@@ -2,16 +2,16 @@ import axios from "axios";
 
 const LocalStorageStateKey = "zeroShare";
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
+
 const httpClient = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: baseUrl,
   timeout: 30000, // 30 seconds
   headers: {
     "Content-Type": "application/json",
   },
   withCredentials: true,
 });
-
-const baseUrl = "http://localhost:3000";
 
 httpClient.interceptors.request.use(
   (config) => {

@@ -4,11 +4,12 @@ import cookieParser from "cookie-parser";
 import errorHandler from "./middlewares/errorHandler.middleware";
 import router from "./routes";
 import morgan from "morgan";
+import { env } from "./configs/env";
 
 const app = express();
 
 const corsOpt = {
-  origin: "http://localhost:8080",
+  origin: env.FRONTEND_URL,
   credentials: true,
 };
 

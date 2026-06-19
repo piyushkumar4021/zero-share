@@ -27,7 +27,7 @@ export const initSocket = (server: any) => {
   const rateLimiter = new RateLimiterRedis(rateLimiterOptions);
 
   const corsOpt = {
-    origin: "http://localhost:8080",
+    origin: env.FRONTEND_URL,
     methods: ["GET", "POST"],
   };
 
@@ -77,7 +77,7 @@ export const initSocket = (server: any) => {
 
   io.on("connection", (socket: any) => {
     socket.onAny((eventName: any, ...args: any) => {
-      console.log(`[Event Received] Name: ${eventName}`, 'Data:', args);
+      console.log(`[Event Received] Name: ${eventName}`, "Data:", args);
     });
 
     const user = socket.user;
