@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 15% 10%;
+
+    --card: 0 0% 99%;
+    --card-foreground: 220 15% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 10%;
+
+    --primary: 220 65% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 15% 25%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 46%;
+
+    --accent: 220 14% 93%;
+    --accent-foreground: 220 15% 10%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 65% 52%;
+
+    --radius: 0.625rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --info: 220 65% 52%;
+    --info-foreground: 0 0% 100%;
+
+    --surface: 220 20% 98%;
+    --surface-elevated: 0 0% 100%;
+  }
+
+  .dark {
+    --background: 220 15% 6%;
+    --foreground: 220 14% 96%;
+    --card: 220 15% 8%;
+    --card-foreground: 220 14% 96%;
+    --popover: 220 15% 8%;
+    --popover-foreground: 220 14% 96%;
+    --primary: 220 65% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 14%;
+    --secondary-foreground: 220 14% 96%;
+    --muted: 220 14% 14%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 220 14% 16%;
+    --accent-foreground: 220 14% 96%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 14% 16%;
+    --input: 220 14% 16%;
+    --ring: 220 65% 58%;
+    --surface: 220 15% 8%;
+    --surface-elevated: 220 15% 10%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body, #root {
+    @apply h-full overflow-hidden;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
