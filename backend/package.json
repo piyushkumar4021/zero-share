@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --watch src src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
-    "seed": "ts-node src/seeds/db.seed.ts"
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +14,6 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1030.0",
     "@aws-sdk/s3-request-presigner": "^3.1030.0",
-    "cloudinary": "^2.8.0",
     "cookie": "^1.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -24,9 +22,8 @@
     "ioredis": "^5.9.3",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.1.1",
+    "morgan": "^1.11.0",
     "nanoid": "^5.1.6",
-    "node-cron": "^4.2.1",
-    "nodemailer": "^7.0.12",
     "rate-limiter-flexible": "^9.1.1",
     "socket.io": "^4.8.3",
     "uuid": "^13.0.0",
@@ -40,8 +37,6 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.10",
     "@types/node": "^25.0.3",
-    "@types/nodemailer": "^7.0.4",
-    "morgan": "^1.11.0",
     "npx": "^10.2.2",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
