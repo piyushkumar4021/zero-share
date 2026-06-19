@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import deviceService from "../services/device.service";
-
 import { env } from "../configs/env";
 import { getRedisClient } from "../redis/redisClient";
 import { ICreateDeviceRequest } from "../schema/request.schema";
@@ -54,7 +53,8 @@ export const httpRegisterDevice = async (req: Request, res: Response) => {
     .cookie("token", accessToken, {
       httpOnly: true,
       maxAge: 15 * 60 * 1000,
-      sameSite: "strict",
+      sameSite: "none",
+      secure: env.NODE_ENV === "production" ? true : false,
     })
     .status(201)
     .json({
