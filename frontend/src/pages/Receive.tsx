@@ -82,7 +82,7 @@ const Receive = () => {
   return (
     <>
       <div className="flex flex-col h-full overflow-hidden">
-        <div className="shrink-0 flex items-center gap-3 px-6 py-4 border-b border-border">
+        <div className="shrink-0 flex flex-wrap items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 border-b border-border">
           <Button
             variant="ghost"
             size="sm"
@@ -98,7 +98,7 @@ const Receive = () => {
             variant="ghost"
             size="sm"
             onClick={() => saveLocation()}
-            className="gap-1.5 text-muted-foreground"
+            className="gap-1.5 text-muted-foreground ml-auto"
           >
             <LocateFixed className="h-3.5 w-3.5" />
             Enable Location
@@ -112,10 +112,10 @@ const Receive = () => {
               animate={{ opacity: 1, y: 0 }}
               className="flex flex-col items-center justify-center h-full px-6"
             >
-              <div className="p-4 rounded-2xl border border-border bg-surface-elevated mb-4">
+              <div className="p-3 sm:p-4 rounded-2xl border border-border bg-surface-elevated mb-4">
                 <QRCodeSVG
                   value={shareCode || "LOADING"}
-                  size={160}
+                  size={typeof window !== 'undefined' && window.innerWidth < 640 ? 120 : 160}
                   level="M"
                 />
               </div>
@@ -124,11 +124,17 @@ const Receive = () => {
                 Share this code
               </p>
 
-              <div className="flex items-center gap-2 mb-6">
-                <span className="text-2xl font-mono font-bold tracking-[0.2em]">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-xl sm:text-2xl font-mono font-bold tracking-[0.15em] sm:tracking-[0.2em]">
                   {shareCode}
                 </span>
               </div>
+
+              {device?.name && (
+                <p className="text-sm font-medium text-foreground mb-4">
+                  {device.name}
+                </p>
+              )}
 
               <p className="text-xs text-muted-foreground text-center max-w-xs">
                 Waiting for someone to connect. Share the code or QR above.
@@ -138,7 +144,7 @@ const Receive = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="p-6 space-y-2"
+              className="p-4 sm:p-6 space-y-2"
             >
               <p className="text-sm text-muted-foreground mb-3">
                 {receivedFiles.length} file

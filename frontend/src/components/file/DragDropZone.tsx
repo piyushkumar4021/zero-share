@@ -24,7 +24,7 @@ const DragDropZone: React.FC<DragDropZoneProps> = ({ onFiles }) => {
 
   return (
     <motion.div
-      className={`relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed transition-colors cursor-pointer p-8 ${
+      className={`relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed transition-colors cursor-pointer p-6 sm:p-8 ${
         dragging ? 'border-primary bg-primary/5' : 'border-border hover:border-muted-foreground/40'
       }`}
       onDragOver={(e) => { e.preventDefault(); setDragging(true); }}

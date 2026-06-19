@@ -13,7 +13,7 @@ const Landing = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-center h-full px-6 overflow-hidden">
+    <div className="flex flex-col items-center justify-center h-full px-4 sm:px-6 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -34,7 +34,7 @@ const Landing = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight mb-4"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-4"
         >
           Share files with
           <br />
@@ -45,7 +45,7 @@ const Landing = () => {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.6 }}
-          className="text-muted-foreground text-base sm:text-lg mb-8 max-w-md mx-auto"
+          className="text-muted-foreground text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-md mx-auto"
         >
           No accounts, no limits. Just drag, drop, and share. Simple file transfer that works everywhere.
         </motion.p>
@@ -70,7 +70,7 @@ const Landing = () => {
         initial={{ opacity: 0, y: 32 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7, duration: 0.6 }}
-        className="flex flex-wrap justify-center gap-6 mt-12 max-w-2xl"
+        className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 mt-8 sm:mt-12 max-w-2xl"
       >
         {features.map((f, i) => (
           <motion.div
@@ -78,7 +78,7 @@ const Landing = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
-            className="flex items-start gap-3 text-left w-52"
+            className="flex items-start gap-3 text-left w-full sm:w-52"
           >
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary">
               <f.icon className="h-4 w-4 text-muted-foreground" />

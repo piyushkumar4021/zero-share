@@ -61,7 +61,7 @@ const FileCard: React.FC<FileCardProps> = ({ file, variant, senderDeviceId }) =>
   }
 
   return (
-    <div className="flex items-center justify-between rounded-lg border border-border bg-surface-elevated px-4 py-3">
+    <div className="flex items-center justify-between rounded-lg border border-border bg-surface-elevated px-3 py-2.5 sm:px-4 sm:py-3">
       <div className="flex items-center gap-3 min-w-0">
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary">
           <File className="h-4 w-4 text-secondary-foreground" />
