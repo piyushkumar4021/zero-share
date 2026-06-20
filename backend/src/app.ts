@@ -9,7 +9,7 @@ import { env } from "./configs/env";
 const app = express();
 
 const corsOpt = {
-  origin: env.FRONTEND_URL,
+  origin: env.ALLOWED_ORIGINS,
   credentials: true,
 };
 

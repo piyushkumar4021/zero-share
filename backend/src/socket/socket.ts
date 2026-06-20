@@ -27,7 +27,7 @@ export const initSocket = (server: any) => {
   const rateLimiter = new RateLimiterRedis(rateLimiterOptions);
 
   const corsOpt = {
-    origin: env.FRONTEND_URL,
+    origin: env.ALLOWED_ORIGINS,
     methods: ["GET", "POST"],
   };
 
