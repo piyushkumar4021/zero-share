@@ -8,6 +8,7 @@ import {
   Keyboard,
   Wifi,
   ScanLine,
+  Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -171,15 +172,32 @@ const SendPage = () => {
     });
   });
 
+  // Listen for errors from backend (e.g. invalid receiver IDs)
+  useSocketEvent("error", (data) => {
+    const message = typeof data === "string" ? data : data?.message || "Something went wrong";
+    toast({
+      title: "Error",
+      description: message,
+      variant: "destructive",
+    });
+    // If we're on the done step and get an error, go back to connect
+    if (step === "done") {
+      setStep("connect");
+      setUploading(false);
+    }
+  });
+
   // Listen for nearbyDevices response from server
   useSocketEvent("nearbyDevices", (data) => {
     setLoadingDevices(false);
     const activeDevices = data.activeDevices || data.nearbyDevices || [];
-    // activeDevices is string[] of device IDs
-    const deviceList: NearbyDevice[] = activeDevices.map((id: string) => ({
-      deviceId: id,
-      name: id, // device ID as name placeholder
-    }));
+    // activeDevices can be string[] of IDs or {deviceId, name}[] if backend enriches
+    const deviceList: NearbyDevice[] = activeDevices.map((item: any) => {
+      if (typeof item === "string") {
+        return { deviceId: item, name: item };
+      }
+      return { deviceId: item.deviceId, name: item.name || item.deviceId };
+    });
     setDevices(deviceList);
   });
 
@@ -415,14 +433,19 @@ const SendPage = () => {
           <Button
             className="w-full h-11"
             disabled={
-              step === "select" ? selectedFiles.length === 0 : !canSend()
+              uploading || (step === "select" ? selectedFiles.length === 0 : !canSend())
             }
             onClick={() => {
               if (step === "select") setStep("connect");
               else handleSend();
             }}
           >
-            {step === "select" ? (
+            {uploading ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Uploading...
+              </>
+            ) : step === "select" ? (
               <>
                 Next <ArrowRight className="h-4 w-4 ml-1.5" />
               </>

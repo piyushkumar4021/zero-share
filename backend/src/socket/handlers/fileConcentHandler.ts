@@ -6,8 +6,10 @@ export const senderReceiverMap = new Map<string, string[]>();
 
 export const fileConcentHandler = (socket: any) => {
   // Share File Event
-  socket.on(SocketEvents.SHARE_FILE, (payload: any) => {
+  socket.on(SocketEvents.SHARE_FILE, async (payload: any) => {
     console.log("Share File", payload);
+
+    const redis = getRedisClient();
 
     try {
       const recieverDeviceIds = payload.recieverDeviceIds;
@@ -18,6 +20,23 @@ export const fileConcentHandler = (socket: any) => {
         return socket.emit(SocketEvents.ERROR, {
           message: "Send reciever device ids",
         });
+      }
+
+
+      for (const receiverId of recieverDeviceIds) {
+        if (sender.deviceId == receiverId) {
+          return socket.emit(SocketEvents.ERROR, {
+            message: "You can not send files to yourself",
+          });
+        }
+
+        const receiver = await redis.get(`device_${receiverId}`).catch(() => null);
+
+        if (!receiver) {
+          return socket.emit(SocketEvents.ERROR, {
+            message: `Receiver with ID ${receiverId} does not exist.`,
+          });
+        }
       }
 
       senderReceiverMap.set(sender.deviceId, recieverDeviceIds);

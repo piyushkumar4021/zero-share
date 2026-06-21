@@ -32,7 +32,12 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device, selected, onSelect }) =
       </div>
       <div className="min-w-0">
         <p className="text-sm font-medium truncate">{device.name}</p>
-        <p className="text-xs text-muted-foreground">{device.distance} away</p>
+        {device.name !== device.deviceId && (
+          <p className="text-xs text-muted-foreground truncate">{device.deviceId}</p>
+        )}
+        {device.distance && (
+          <p className="text-xs text-muted-foreground">{device.distance} away</p>
+        )}
       </div>
     </button>
   );
